@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
-import { Container, Header, Menu, Dropdown, Grid, Comment, Form, Button, List, Icon, Modal } from 'semantic-ui-react';
+import { Container, Header, Menu, Dropdown, Grid, Comment, Form, Button, List, Icon } from 'semantic-ui-react';
 import ProjectView from './ProjectView';
 
 const SectionView: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleOpen = () => setModalOpen(true);
-  const handleClose = () => setModalOpen(false);
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <Container>
       {/* Hamburger Menu */}
-      <Button icon onClick={handleOpen}>
-        <Icon name='bars' />
-      </Button>
-
-      {/* Modal for ProjectView */}
-      <Modal open={modalOpen} onClose={handleClose} closeIcon>
-        <Modal.Header>Select a Project</Modal.Header>
-        <Modal.Content>
+      <Dropdown
+        icon={null}
+        trigger={
+          <Button icon>
+            <Icon name='bars' />
+          </Button>
+        }
+        open={dropdownOpen}
+        onClick={handleDropdownToggle}
+      >
+        <Dropdown.Menu>
           <ProjectView />
-        </Modal.Content>
-      </Modal>
+        </Dropdown.Menu>
+      </Dropdown>
 
       {/* Main Content */}
       <Container>
