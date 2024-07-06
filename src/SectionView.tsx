@@ -11,41 +11,42 @@ const SectionView: React.FC = () => {
 
   return (
     <Container>
-      {/* Hamburger Menu */}
-      <Dropdown
-        icon={null}
-        trigger={
-          <Button icon>
-            <Icon name='bars' />
-          </Button>
-        }
-        open={dropdownOpen}
-        onClick={handleDropdownToggle}
-      >
-        <Dropdown.Menu>
-          <ProjectView />
-        </Dropdown.Menu>
-      </Dropdown>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/* Hamburger Menu */}
+          <Dropdown
+            icon={null}
+            trigger={
+              <Button icon onClick={handleDropdownToggle}>
+                <Icon name='bars' />
+              </Button>
+            }
+            open={dropdownOpen}
+            onClick={handleDropdownToggle}
+            style={{ marginRight: '1rem' }}
+          >
+            <Dropdown.Menu>
+              <ProjectView />
+            </Dropdown.Menu>
+          </Dropdown>
+
+          {/* Section Header */}
+          <Header as='h2' style={{ margin: 0 }}>My section</Header>
+        </div>
+
+        {/* Ellipsis Menu */}
+        <Dropdown item icon='ellipsis vertical' simple>
+          <Dropdown.Menu>
+            <Dropdown.Item>Edit title</Dropdown.Item>
+            <Dropdown.Item>Edit Progression</Dropdown.Item>
+            <Dropdown.Item>Duplicate</Dropdown.Item>
+            <Dropdown.Item>Delete</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
 
       {/* Main Content */}
       <Container>
-        {/* Menu */}
-        <Menu>
-          <Menu.Item>
-            <Header as='h2'>My section</Header>
-          </Menu.Item>
-          <Menu.Menu position='right'>
-            <Dropdown item icon='ellipsis vertical' simple>
-              <Dropdown.Menu>
-                <Dropdown.Item>Edit title</Dropdown.Item>
-                <Dropdown.Item>Edit Progression</Dropdown.Item>
-                <Dropdown.Item>Duplicate</Dropdown.Item>
-                <Dropdown.Item>Delete</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Menu.Menu>
-        </Menu>
-
         {/* Chord Progression */}
         <Header as='h3'>Progression: C Dm Em F</Header>
 
