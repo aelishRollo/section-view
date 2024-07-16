@@ -3,14 +3,14 @@ import * as types from '@/types/music_sniper_types';
 import {plural} from '@/utils';
 
 type FilesProps = {
-    files: types.FileData[]
+    files: types.FileData[];
 }
 
-export const Files: React.FC<FilesProps> = ({files}) => {
+export const Files = ({files}: FilesProps) => {
     const globalStore = useGlobalStore();
 
     return (
-        <div className="files">
+        <div className='files'>
             <span>+ Files</span>
             {files.map((file) => {
                 const numComments = globalStore.getCommentsForFile(file.id).length;
@@ -21,7 +21,7 @@ export const Files: React.FC<FilesProps> = ({files}) => {
                         id={file.id}
                     >
                         {file.title}
-                        <br></br> <br></br>
+                        <br/> <br/>
                         {numComments}
                         {' '}
                         {plural('Comment', numComments)}

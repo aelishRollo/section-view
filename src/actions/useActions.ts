@@ -11,7 +11,6 @@ export const useActions = (): UseActionsHookValue => {
     const globalStore = useGlobalStore();
     const client = useClient();
 
-    // TODO: this should be retrieved from globalState
     // const projectId = globalStore.getCurrentProjectId()
     const projectId = 'project-1';
 
@@ -41,4 +40,4 @@ export const useActions = (): UseActionsHookValue => {
         addCommentToEntity,
         updateSection,
     };
-}
+};

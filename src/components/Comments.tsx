@@ -9,20 +9,20 @@ type CommentsProps = {
     entityPointer: EntityPointer;
 }
 
-export const Comments: React.FC<CommentsProps> = ({entityPointer}) => {
+export const Comments = ({entityPointer}: CommentsProps) => {
     const globalStore = useGlobalStore();
     const comments = globalStore.getCommentsForEntity(entityPointer);
 
     return (
-        <div className="comments">
+        <div className='comments'>
             <span>{comments.length} {plural('Comment', comments.length)}</span>
-            <div className="display-comments">
-                {comments.map(comment => (
+            <div className='display-comments'>
+                {comments.map((comment) => (
                     <p
                         key={comment.id}
                         id={comment.id}
                     >
-                        <FontAwesomeIcon icon={faFaceSmile} />
+                        <FontAwesomeIcon icon={faFaceSmile}/>
                         {comment.username}: {comment.message}
                     </p>
                 ))}

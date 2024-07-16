@@ -1,4 +1,5 @@
 import {createContext, useContext, useMemo, useState} from 'react';
+
 import {CommentData, EntityPointer, EntityType, FileData, FullProjectData, SectionData} from '../types/music_sniper_types';
 import {matchesEntityPointer} from '../utils';
 
@@ -29,13 +30,13 @@ export const useGlobalStore = (): UseGlobalStoreHookValue => {
     const projectData = globalStore.getFullProjectData();
 
     return useMemo(() => ({
-        getCommentsForFile: (fileId) => projectData.comments.filter(c => matchesEntityPointer(c, EntityType.FILE, fileId)),
-        getCommentsForSection: (sectionId) => projectData.comments.filter(c => matchesEntityPointer(c, EntityType.SECTION, sectionId)),
-        getFilesForSection: (sectionId) => projectData.files.filter(f => matchesEntityPointer(f, EntityType.SECTION, sectionId)),
-        getCommentsForEntity: (entityPointer: EntityPointer) => projectData.comments.filter(c => matchesEntityPointer(c, entityPointer.entityType, entityPointer.entityId)),
+        getCommentsForFile: (fileId) => projectData.comments.filter((c) => matchesEntityPointer(c, EntityType.FILE, fileId)),
+        getCommentsForSection: (sectionId) => projectData.comments.filter((c) => matchesEntityPointer(c, EntityType.SECTION, sectionId)),
+        getFilesForSection: (sectionId) => projectData.files.filter((f) => matchesEntityPointer(f, EntityType.SECTION, sectionId)),
+        getCommentsForEntity: (entityPointer: EntityPointer) => projectData.comments.filter((c) => matchesEntityPointer(c, entityPointer.entityType, entityPointer.entityId)),
 
         // error-prone how we assume the section exists
-        getSection: (sectionId) => projectData.sections.find(s => s.id === sectionId)!,
+        getSection: (sectionId) => projectData.sections.find((s) => s.id === sectionId)!,
 
         addComment: (comment) => {
             const state = globalStore.getFullProjectData();
@@ -53,7 +54,7 @@ export const useGlobalStore = (): UseGlobalStoreHookValue => {
         updateSection: (sectionId, updatedSection) => {
             const state = globalStore.getFullProjectData();
 
-            const sections = state.sections.map(existingSection => {
+            const sections = state.sections.map((existingSection) => {
                 if (existingSection.id === sectionId) {
                     return updatedSection;
                 }
@@ -67,7 +68,7 @@ export const useGlobalStore = (): UseGlobalStoreHookValue => {
             };
 
             globalStore.setFullProjectData(newState);
-        }
+        },
     }), [projectData, globalStore]);
 };
 

@@ -1,13 +1,13 @@
+import {useState} from 'react';
 
 import {useActions} from '@/actions/useActions';
 import {EntityPointer} from '@/types/music_sniper_types';
-import {useState} from 'react';
 
 type CreateCommentProps = {
     entityPointer: EntityPointer;
 }
 
-export const CreateComment: React.FC<CreateCommentProps> = ({entityPointer}) => {
+export const CreateComment = ({entityPointer}: CreateCommentProps) => {
     const actions = useActions();
 
     const [name, setName] = useState('');
@@ -18,7 +18,7 @@ export const CreateComment: React.FC<CreateCommentProps> = ({entityPointer}) => 
 
         await actions.addCommentToEntity(commentText, name, entityPointer);
         setCommentText('');
-    }
+    };
 
     return (
         <div>
@@ -37,7 +37,7 @@ export const CreateComment: React.FC<CreateCommentProps> = ({entityPointer}) => 
                 />
                 <button
                     type='submit'
-                    disabled={!Boolean(name && commentText)}
+                    disabled={!(name && commentText)}
                 >
                     Add Comment
                 </button>
