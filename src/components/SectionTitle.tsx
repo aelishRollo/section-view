@@ -1,7 +1,8 @@
-import {useActions} from './actions/useActions';
-import {useGlobalStore} from './hooks/useGlobalStore';
 import React, {useState, FormEvent} from 'react';
-import {SectionData} from './types';
+
+import {useActions} from '@/actions/useActions';
+import {useGlobalStore} from '@/hooks/useGlobalStore';
+import {SectionData} from '@/types/music_sniper_types';
 
 type SectionDataProps = {
     sectionId: string;
@@ -31,7 +32,7 @@ export const SectionTitle: React.FC<SectionDataProps> = ({sectionId}) => {
         const newSection: SectionData = {
             ...section,
             title: newTitle,
-        }
+        };
 
         actions.updateSection(sectionId, newSection);
         // setDraftTitle(newTitle);
@@ -58,7 +59,7 @@ export const SectionTitle: React.FC<SectionDataProps> = ({sectionId}) => {
                         type='text'
                         placeholder='Enter new section name'
                     />
-                    <button type="submit">Update Name</button>
+                    <button type='submit'>Update Name</button>
                 </form>
             )}
             <div className='revisions'>

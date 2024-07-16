@@ -1,6 +1,6 @@
 import {useClient} from '../hooks/useClient';
 import {useGlobalStore} from '../hooks/useGlobalStore';
-import {CommentData, EntityPointer, SectionData} from '../types';
+import {CommentData, EntityPointer, SectionData} from '../types/music_sniper_types';
 
 type UseActionsHookValue = {
     addCommentToEntity(text: string, username: string, entityPointer: EntityPointer): Promise<CommentData>;
@@ -11,7 +11,6 @@ export const useActions = (): UseActionsHookValue => {
     const globalStore = useGlobalStore();
     const client = useClient();
 
-    // TODO: this should be retrieved from globalState
     // const projectId = globalStore.getCurrentProjectId()
     const projectId = 'project-1';
 
@@ -41,4 +40,4 @@ export const useActions = (): UseActionsHookValue => {
         addCommentToEntity,
         updateSection,
     };
-}
+};

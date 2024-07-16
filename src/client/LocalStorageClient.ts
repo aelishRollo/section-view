@@ -1,5 +1,6 @@
 import {LocalStorageStore} from '../store/LocalStorageStore';
-import {CommentData, FullProjectData, SectionData} from '../types';
+import {CommentData, FullProjectData, SectionData} from '../types/music_sniper_types';
+
 import {IClient} from './IClient';
 
 export class LocalStorageClient implements IClient {
@@ -20,15 +21,15 @@ export class LocalStorageClient implements IClient {
         this.persistentStore.setAllComments(newState);
 
         return newComment;
-    }
+    };
 
     // fetchFullDataForProject uses the local storage store to get all data for a given project
     // it fetches the project data, sections, files, and comments for the given project
     fetchFullDataForProject = async (projectId: string): Promise<FullProjectData | Error> => {
-        const projects = (await this.persistentStore.getAllProjects()).filter(p => p.id === projectId);
-        const sections = (await this.persistentStore.getAllSections()).filter(s => s.projectId === projectId);
-        const files = (await this.persistentStore.getAllFiles()).filter(f => f.projectId === projectId);
-        const comments = (await this.persistentStore.getAllComments()).filter(c => c.projectId === projectId);
+        const projects = (await this.persistentStore.getAllProjects()).filter((p) => p.id === projectId);
+        const sections = (await this.persistentStore.getAllSections()).filter((s) => s.projectId === projectId);
+        const files = (await this.persistentStore.getAllFiles()).filter((f) => f.projectId === projectId);
+        const comments = (await this.persistentStore.getAllComments()).filter((c) => c.projectId === projectId);
 
         if (!projects[0]) {
             return new Error(`Error: No project found for projectId ${projectId}`);
@@ -40,11 +41,11 @@ export class LocalStorageClient implements IClient {
             files,
             sections,
         };
-    }
+    };
 
     updateSection = async (sectionId: string, section: SectionData): Promise<SectionData> => {
         const sections = await this.persistentStore.getAllSections();
-        const newState = sections.map(s => {
+        const newState = sections.map((s) => {
             if (s.id === sectionId) {
                 return section;
             }
@@ -55,5 +56,5 @@ export class LocalStorageClient implements IClient {
         this.persistentStore.setAllSections(newState);
 
         return section;
-    }
+    };
 }

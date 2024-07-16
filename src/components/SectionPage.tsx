@@ -1,17 +1,18 @@
-import * as types from './types';
 import {Files} from './Files';
 import {ChordProgression} from './ChordProgression';
 import {Comments} from './Comments';
 import {CreateComment} from './CreateComment';
 import {SectionTitle} from './SectionTitle';
-import {useGlobalStore} from './hooks/useGlobalStore';
+
+import * as types from '@/types/music_sniper_types';
+import {useGlobalStore} from '@/hooks/useGlobalStore';
 
 type SectionPageProps = {
     projectId: string;
     sectionId: string;
 }
 
-const SectionPage: React.FC<SectionPageProps> = ({projectId, sectionId}) => {
+const SectionPage = ({projectId: _, sectionId}: SectionPageProps) => {
     const globalStore = useGlobalStore();
     const section = globalStore.getSection(sectionId);
     const files = globalStore.getFilesForSection(sectionId);
@@ -22,14 +23,14 @@ const SectionPage: React.FC<SectionPageProps> = ({projectId, sectionId}) => {
     };
 
     return (
-        <div className="root">
-            <SectionTitle sectionId={sectionId} />
-            <ChordProgression chordProgression={section.chordProgression} />
-            <Files files={files} />
-            <Comments entityPointer={sectionPointer} />
-            <CreateComment entityPointer={sectionPointer} />
+        <div className='root'>
+            <SectionTitle sectionId={sectionId}/>
+            <ChordProgression chordProgression={section.chordProgression}/>
+            <Files files={files}/>
+            <Comments entityPointer={sectionPointer}/>
+            <CreateComment entityPointer={sectionPointer}/>
         </div>
     );
-}
+};
 
 export default SectionPage;

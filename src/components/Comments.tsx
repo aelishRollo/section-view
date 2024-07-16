@@ -1,28 +1,28 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFaceSmile} from '@fortawesome/free-solid-svg-icons';
 
-import {EntityPointer} from './types';
-import {useGlobalStore} from './hooks/useGlobalStore';
-import {plural} from './utils';
+import {EntityPointer} from '@/types/music_sniper_types';
+import {useGlobalStore} from '@/hooks/useGlobalStore';
+import {plural} from '@/utils';
 
 type CommentsProps = {
     entityPointer: EntityPointer;
 }
 
-export const Comments: React.FC<CommentsProps> = ({entityPointer}) => {
+export const Comments = ({entityPointer}: CommentsProps) => {
     const globalStore = useGlobalStore();
     const comments = globalStore.getCommentsForEntity(entityPointer);
 
     return (
-        <div className="comments">
+        <div className='comments'>
             <span>{comments.length} {plural('Comment', comments.length)}</span>
-            <div className="display-comments">
-                {comments.map(comment => (
+            <div className='display-comments'>
+                {comments.map((comment) => (
                     <p
                         key={comment.id}
                         id={comment.id}
                     >
-                        <FontAwesomeIcon icon={faFaceSmile} />
+                        <FontAwesomeIcon icon={faFaceSmile}/>
                         {comment.username}: {comment.message}
                     </p>
                 ))}

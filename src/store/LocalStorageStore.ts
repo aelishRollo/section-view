@@ -1,4 +1,4 @@
-import {CommentData, EntityType, FileData, ProjectData, SectionData} from '../types';
+import {CommentData, EntityType, FileData, ProjectData, SectionData} from '../types/music_sniper_types';
 
 export interface LocalStorageDependency {
     getItem(key: string): string | null;
@@ -6,7 +6,6 @@ export interface LocalStorageDependency {
     clear(): void;
 }
 
-// TODO: versioning of the store allows for migrations
 // const LOCAL_STORAGE_KEY_VERSION = 'version';
 
 const LOCAL_STORAGE_KEY_PROJECTS = 'projects';
@@ -40,7 +39,7 @@ export class LocalStorageStore {
     clear = () => {
         this.ls.clear();
         this.currentData = this.migrateLocalStorageStore();
-    }
+    };
 
     initializeWithSampleData = () => {
         this.clear();
@@ -48,7 +47,7 @@ export class LocalStorageStore {
         this.setAllSections(initialSections);
         this.setAllFiles(initialFiles);
         this.setAllComments(initialComments);
-    }
+    };
 
     getAllProjects = async (): Promise<ProjectData[]> => {
         return this.currentData.projects;
@@ -139,7 +138,7 @@ export class LocalStorageStore {
         }
 
         return store;
-    }
+    };
 }
 
 const initialProjects: ProjectData[] = [
@@ -159,7 +158,7 @@ const initialSections: SectionData[] = [
         description: 'This is the intro',
         title: 'Intro',
         numRevisions: 3,
-    }
+    },
 ];
 
 const initialFiles: FileData[] = [
